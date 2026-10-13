@@ -52,6 +52,11 @@
       "type": "component",
       "component": "template.hero",
       "repeatable": false
+    },
+    "features": {
+      "type": "component",
+      "component": "template.feature",
+      "repeatable": true
     }
   }
 }

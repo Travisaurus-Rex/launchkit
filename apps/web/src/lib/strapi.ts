@@ -20,6 +20,12 @@ export type Hero = {
   ctaUrl: string | null;
 };
 
+export type Feature = {
+  id: number;
+  title: string;
+  description: string;
+};
+
 export type Template = {
   id: number;
   documentId: string;
@@ -30,6 +36,7 @@ export type Template = {
   templateCategory: Category | null;
   brand: Brand | null;
   hero: Hero | null;
+  features: Feature[];
 };
 
 type TemplatesResponse = {

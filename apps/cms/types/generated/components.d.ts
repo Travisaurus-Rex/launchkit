@@ -11,6 +11,17 @@ export interface TemplateBrand extends Struct.ComponentSchema {
   };
 }
 
+export interface TemplateFeature extends Struct.ComponentSchema {
+  collectionName: 'components_template_features';
+  info: {
+    displayName: 'Feature';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface TemplateHero extends Struct.ComponentSchema {
   collectionName: 'components_template_heroes';
   info: {
@@ -28,6 +39,7 @@ declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'template.brand': TemplateBrand;
+      'template.feature': TemplateFeature;
       'template.hero': TemplateHero;
     }
   }
