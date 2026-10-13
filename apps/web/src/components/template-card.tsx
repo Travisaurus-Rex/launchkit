@@ -11,9 +11,9 @@ export default function TemplateCard({ template }: TemplateCardProps) {
   return (
     <article className="group overflow-hidden rounded-2xl border border-stone-200 bg-white transition-all hover:-translate-y-1 hover:shadow-xl">
       <Link
-        href={`/templates/${template.slug}/preview`}
+        href={`/templates/${template.slug}`}
         className="block"
-        aria-label={`Preview ${template.title}`}
+        aria-label={`View details for ${template.title}`}
       >
         <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-violet-100 via-indigo-50 to-stone-100">
           <span className="text-3xl font-bold tracking-tight text-violet-700">
@@ -36,10 +36,10 @@ export default function TemplateCard({ template }: TemplateCardProps) {
         </p>
 
         <Link
-          href={`/templates/${template.slug}/preview`}
+          href={`/templates/${template.slug}`}
           className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-stone-950 hover:text-violet-600"
         >
-          Live preview
+          View Details
           <span aria-hidden="true">→</span>
         </Link>
       </div>
