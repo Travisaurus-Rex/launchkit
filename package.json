@@ -1,0 +1,9 @@
+{
+  "name": "launchkit",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:cms": "pnpm --dir apps/cms develop"
+  }
+}
