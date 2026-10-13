@@ -33,6 +33,16 @@
         "audios"
       ]
     },
+    "fullPageScreenshot": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
     "featured": {
       "type": "boolean",
       "default": false

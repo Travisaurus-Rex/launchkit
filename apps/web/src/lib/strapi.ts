@@ -28,6 +28,14 @@ export type Feature = {
   description: string;
 };
 
+export type StrapiImage = {
+  id: number;
+  url: string;
+  alternativeText: string | null;
+  width: number;
+  height: number;
+};
+
 export type Template = {
   id: number;
   documentId: string;
@@ -40,6 +48,8 @@ export type Template = {
   hero: Hero | null;
   features: Feature[];
   design: TemplateDesign;
+  thumbnail: StrapiImage | null;
+  fullPageScreenshot: StrapiImage | null;
 };
 
 type TemplatesResponse = {
@@ -88,4 +98,18 @@ export async function getTemplateBySlug(
 
   const result: TemplatesResponse = await response.json();
   return result.data[0] ?? null;
+}
+
+export function getStrapiMediaUrl(url: string): string {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+
+  const baseUrl = process.env.STRAPI_URL;
+
+  if (!baseUrl) {
+    throw new Error("STRAPI_URL is not configured");
+  }
+
+  return new URL(url, baseUrl).toString();
 }

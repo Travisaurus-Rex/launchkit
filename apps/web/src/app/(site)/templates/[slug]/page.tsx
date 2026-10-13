@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import Image from "next/image";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 import { getTemplateBySlug } from "@/lib/strapi";
 
@@ -36,16 +38,26 @@ async function TemplateDetails({ params }: TemplateDetailPageProps) {
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr]">
           {/* Preview image placeholder */}
           <div>
-            <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-3xl border border-stone-200 bg-gradient-to-br from-violet-100 via-indigo-50 to-stone-100">
-              <div className="text-center">
-                <span className="text-5xl font-bold tracking-tight text-violet-700">
-                  {template.brand?.brandName ?? template.title}
-                </span>
-
-                <p className="mt-4 text-sm text-violet-500">
-                  Website template preview
-                </p>
-              </div>
+            <div className="overflow-hidden rounded-3xl border border-stone-200 bg-stone-100">
+              {template.fullPageScreenshot ? (
+                <Image
+                  src={getStrapiMediaUrl(template.fullPageScreenshot.url)}
+                  alt={
+                    template.fullPageScreenshot.alternativeText ??
+                    `Full-page screenshot of ${template.title}`
+                  }
+                  width={template.fullPageScreenshot.width}
+                  height={template.fullPageScreenshot.height}
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="h-auto w-full"
+                />
+              ) : (
+                <div className="flex aspect-[4/3] items-center justify-center">
+                  <span className="text-4xl font-bold text-violet-700">
+                    {template.brand?.brandName ?? template.title}
+                  </span>
+                </div>
+              )}
             </div>
 
             <p className="mt-4 text-center text-sm text-stone-500">

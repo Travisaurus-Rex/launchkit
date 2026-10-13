@@ -496,6 +496,9 @@ export interface ApiTemplateTemplate extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     features: Schema.Attribute.Component<'template.feature', true>;
+    fullPageScreenshot: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     hero: Schema.Attribute.Component<'template.hero', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

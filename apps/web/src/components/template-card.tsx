@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Template } from "@/lib/strapi";
+import Image from "next/image";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 type TemplateCardProps = {
   template: Template;
@@ -15,10 +17,25 @@ export default function TemplateCard({ template }: TemplateCardProps) {
         className="block"
         aria-label={`View details for ${template.title}`}
       >
-        <div className="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-violet-100 via-indigo-50 to-stone-100">
-          <span className="text-3xl font-bold tracking-tight text-violet-700">
-            {template.brand?.brandName ?? template.title}
-          </span>
+        <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
+          {template.thumbnail ? (
+            <Image
+              src={getStrapiMediaUrl(template.thumbnail.url)}
+              alt={
+                template.thumbnail.alternativeText ??
+                `${template.title} website preview`
+              }
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center bg-gradient-to-br from-violet-100 to-indigo-50">
+              <span className="text-3xl font-bold text-violet-700">
+                {template.brand?.brandName ?? template.title}
+              </span>
+            </div>
+          )}
         </div>
       </Link>
 
