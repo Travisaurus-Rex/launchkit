@@ -23,14 +23,6 @@
       "type": "text",
       "required": true
     },
-    "category": {
-      "type": "enumeration",
-      "enum": [
-        "saas",
-        "agency",
-        "local_business"
-      ]
-    },
     "thumbnail": {
       "type": "media",
       "multiple": false,
@@ -44,6 +36,12 @@
     "featured": {
       "type": "boolean",
       "default": false
+    },
+    "templateCategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "templates"
     }
   }
 }

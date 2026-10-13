@@ -15,7 +15,7 @@ export default async function TemplateList() {
           className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
         >
           <span className="text-sm font-medium uppercase text-indigo-600">
-            {template.category.replace("_", " ")}
+            {template.templateCategory?.name ?? "Uncategorized"}
           </span>
 
           <h3 className="mt-3 text-xl font-semibold text-slate-900">
