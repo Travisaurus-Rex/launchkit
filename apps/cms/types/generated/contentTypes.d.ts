@@ -492,6 +492,8 @@ export interface ApiTemplateTemplate extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
+    design: Schema.Attribute.Enumeration<['nova', 'atelier', 'local']> &
+      Schema.Attribute.Required;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     features: Schema.Attribute.Component<'template.feature', true>;
     hero: Schema.Attribute.Component<'template.hero', false>;

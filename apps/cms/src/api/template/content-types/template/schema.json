@@ -57,6 +57,15 @@
       "type": "component",
       "component": "template.feature",
       "repeatable": true
+    },
+    "design": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "nova",
+        "atelier",
+        "local"
+      ]
     }
   }
 }

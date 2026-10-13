@@ -6,6 +6,8 @@ export type Category = {
   description: string | null;
 };
 
+export type TemplateDesign = "nova" | "atelier" | "local";
+
 export type Brand = {
   id: number;
   brandName: string;
@@ -37,6 +39,7 @@ export type Template = {
   brand: Brand | null;
   hero: Hero | null;
   features: Feature[];
+  design: TemplateDesign;
 };
 
 type TemplatesResponse = {
