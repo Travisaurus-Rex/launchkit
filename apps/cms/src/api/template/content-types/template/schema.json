@@ -42,6 +42,16 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "templates"
+    },
+    "brand": {
+      "type": "component",
+      "component": "template.brand",
+      "repeatable": false
+    },
+    "hero": {
+      "type": "component",
+      "component": "template.hero",
+      "repeatable": false
     }
   }
 }

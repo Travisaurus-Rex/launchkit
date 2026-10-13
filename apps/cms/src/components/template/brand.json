@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_template_brands",
+  "info": {
+    "displayName": "Brand"
+  },
+  "options": {},
+  "attributes": {
+    "brandName": {
+      "type": "string",
+      "required": true
+    },
+    "primaryColor": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}
