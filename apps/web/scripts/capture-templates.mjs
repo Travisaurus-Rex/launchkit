@@ -11,19 +11,19 @@ const page = await browser.newPage({
 const output = "screenshots";
 await mkdir(output, { recursive: true });
 
-await page.goto("http://localhost:3000/templates/nova-saas/preview", {
+await page.goto("http://localhost:3000/templates/atelier-studio/preview", {
   waitUntil: "networkidle",
 });
 
 await page.screenshot({
-  path: `${output}/nova-thumbnail.png`,
+  path: `${output}/atelier-thumbnail.png`,
 });
 
 await page.screenshot({
-  path: `${output}/nova-full.png`,
+  path: `${output}/atelier-full.png`,
   fullPage: true,
 });
 
 await browser.close();
 
-console.log("Nova screenshots captured successfully.");
+console.log("Atelier screenshots captured successfully.");
