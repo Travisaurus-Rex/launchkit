@@ -1,56 +1,19 @@
-import type { Brand, Hero, Feature } from "@/lib/strapi";
+import type { Brand, Hero, Feature, Project } from "@/lib/strapi";
+import { getStrapiMediaUrl } from "@/lib/strapi";
+import Image from "next/image";
 
 type AtelierTemplateProps = {
   brand: Brand;
   hero: Hero;
   features: Feature[];
+  projects: Project[];
 };
-
-// Placeholder portfolio content.
-// We'll replace this with Strapi-managed projects next.
-const projects = [
-  {
-    number: "01",
-    name: "Forma",
-    category: "Brand Identity / Art Direction",
-    background: "#E8DCD0",
-    foreground: "#543B31",
-    subtitle: "Objects for everyday living.",
-    style: "font-serif italic",
-  },
-  {
-    number: "02",
-    name: "MONO",
-    category: "Digital Experience / Strategy",
-    background: "#D5DBCF",
-    foreground: "#263A30",
-    subtitle: "A new perspective on simplicity.",
-    style: "font-sans font-black tracking-tighter",
-  },
-  {
-    number: "03",
-    name: "sōl",
-    category: "Brand Identity / Packaging",
-    background: "#F2D9BA",
-    foreground: "#A34A2F",
-    subtitle: "A little more sunshine.",
-    style: "font-serif italic",
-  },
-  {
-    number: "04",
-    name: "STILL.",
-    category: "Art Direction / Digital",
-    background: "#302D2A",
-    foreground: "#F4EFE8",
-    subtitle: "Space to slow down.",
-    style: "font-sans font-light tracking-widest",
-  },
-];
 
 export default function AtelierTemplate({
   brand,
   hero,
   features,
+  projects,
 }: AtelierTemplateProps) {
   const accent = brand.primaryColor;
   const ctaUrl = hero.ctaUrl || "#work";
@@ -150,29 +113,26 @@ export default function AtelierTemplate({
           <div className="grid gap-x-7 gap-y-14 md:grid-cols-2">
             {projects.map((project, index) => (
               <article
-                key={project.number}
+                key={project.id}
                 className={index % 2 === 1 ? "md:pt-24" : ""}
               >
-                <div
-                  className="flex aspect-[4/5] flex-col items-center justify-center overflow-hidden p-8 text-center transition-transform duration-500 hover:scale-[0.98]"
-                  style={{
-                    backgroundColor: project.background,
-                    color: project.foreground,
-                  }}
-                >
-                  <span className="mb-6 text-xs uppercase tracking-[0.3em] opacity-60">
-                    Selected project / {project.number}
-                  </span>
-
-                  <span
-                    className={`text-[clamp(4rem,9vw,8rem)] leading-none ${project.style}`}
-                  >
-                    {project.name}
-                  </span>
-
-                  <span className="mt-7 max-w-xs text-sm tracking-wide opacity-70">
-                    {project.subtitle}
-                  </span>
+                <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden bg-[#DCD6CA]">
+                  {project.image ? (
+                    <Image
+                      src={getStrapiMediaUrl(project.image.url)}
+                      alt={
+                        project.image.alternativeText ??
+                        `${project.name} portfolio project`
+                      }
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                  ) : (
+                    <span className="px-6 text-center text-5xl font-semibold tracking-tight text-[#534A41] md:text-7xl">
+                      {project.name}
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-5 flex items-start justify-between gap-4">
@@ -180,12 +140,18 @@ export default function AtelierTemplate({
                     <h3 className="text-2xl font-semibold tracking-tight">
                       {project.name}
                     </h3>
+
                     <p className="mt-1 text-sm text-[#77746D]">
                       {project.category}
                     </p>
+
+                    <p className="mt-3 max-w-md text-sm leading-7 text-[#77746D]">
+                      {project.description}
+                    </p>
                   </div>
+
                   <span className="text-sm text-[#77746D]">
-                    {project.number}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
               </article>

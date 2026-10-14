@@ -1,3 +1,12 @@
+export type Project = {
+  id: number;
+  name: string;
+  category: string;
+  description: string;
+  image: StrapiImage | null;
+  projectUrl: string | null;
+};
+
 export type Category = {
   id: number;
   documentId: string;
@@ -50,6 +59,7 @@ export type Template = {
   design: TemplateDesign;
   thumbnail: StrapiImage | null;
   fullPageScreenshot: StrapiImage | null;
+  projects: Project[];
 };
 
 type TemplatesResponse = {
@@ -82,10 +92,17 @@ export async function getTemplates(): Promise<Template[]> {
 export async function getTemplateBySlug(
   slug: string,
 ): Promise<Template | null> {
-  const params = new URLSearchParams({
-    "filters[slug][$eq]": slug,
-    populate: "*",
-  });
+  const params = new URLSearchParams();
+
+  params.set("filters[slug][$eq]", slug);
+
+  params.set("populate[templateCategory]", "true");
+  params.set("populate[brand]", "true");
+  params.set("populate[hero]", "true");
+  params.set("populate[features]", "true");
+  params.set("populate[thumbnail]", "true");
+  params.set("populate[fullPageScreenshot]", "true");
+  params.set("populate[projects][populate][0]", "image");
 
   const response = await fetch(
     `${getStrapiUrl()}/api/templates?${params.toString()}`,
@@ -97,6 +114,7 @@ export async function getTemplateBySlug(
   }
 
   const result: TemplatesResponse = await response.json();
+
   return result.data[0] ?? null;
 }
 

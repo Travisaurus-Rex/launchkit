@@ -506,6 +506,7 @@ export interface ApiTemplateTemplate extends Struct.CollectionTypeSchema {
       'api::template.template'
     > &
       Schema.Attribute.Private;
+    projects: Schema.Attribute.Component<'template.project', true>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;
     templateCategory: Schema.Attribute.Relation<

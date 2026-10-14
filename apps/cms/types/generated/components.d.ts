@@ -35,12 +35,27 @@ export interface TemplateHero extends Struct.ComponentSchema {
   };
 }
 
+export interface TemplateProject extends Struct.ComponentSchema {
+  collectionName: 'components_template_projects';
+  info: {
+    displayName: 'Project';
+  };
+  attributes: {
+    categ: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    projectUrl: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'template.brand': TemplateBrand;
       'template.feature': TemplateFeature;
       'template.hero': TemplateHero;
+      'template.project': TemplateProject;
     }
   }
 }

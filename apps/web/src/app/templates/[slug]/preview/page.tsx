@@ -42,6 +42,7 @@ async function TemplatePreview({ params }: PreviewPageProps) {
       brand={template.brand}
       hero={template.hero}
       features={template.features ?? []}
+      projects={template.projects ?? []}
     />
   );
 }
