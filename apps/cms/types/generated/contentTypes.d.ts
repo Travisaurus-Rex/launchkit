@@ -488,6 +488,7 @@ export interface ApiTemplateTemplate extends Struct.CollectionTypeSchema {
   };
   attributes: {
     brand: Schema.Attribute.Component<'template.brand', false>;
+    businessInfo: Schema.Attribute.Component<'template.business-info', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -499,6 +500,10 @@ export interface ApiTemplateTemplate extends Struct.CollectionTypeSchema {
     fullPageScreenshot: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    galleryImages: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     hero: Schema.Attribute.Component<'template.hero', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -506,6 +511,7 @@ export interface ApiTemplateTemplate extends Struct.CollectionTypeSchema {
       'api::template.template'
     > &
       Schema.Attribute.Private;
+    menuItems: Schema.Attribute.Component<'template.menu-item', true>;
     projects: Schema.Attribute.Component<'template.project', true>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'>;

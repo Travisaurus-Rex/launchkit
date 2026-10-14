@@ -81,6 +81,26 @@
       "type": "component",
       "component": "template.project",
       "repeatable": true
+    },
+    "menuItems": {
+      "type": "component",
+      "component": "template.menu-item",
+      "repeatable": true
+    },
+    "businessInfo": {
+      "type": "component",
+      "component": "template.business-info",
+      "repeatable": false
+    },
+    "galleryImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

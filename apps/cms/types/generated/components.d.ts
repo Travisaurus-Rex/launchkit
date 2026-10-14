@@ -11,6 +11,19 @@ export interface TemplateBrand extends Struct.ComponentSchema {
   };
 }
 
+export interface TemplateBusinessInfo extends Struct.ComponentSchema {
+  collectionName: 'components_template_business_infos';
+  info: {
+    displayName: 'BusinessInfo';
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    openingHours: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
+  };
+}
+
 export interface TemplateFeature extends Struct.ComponentSchema {
   collectionName: 'components_template_features';
   info: {
@@ -35,6 +48,19 @@ export interface TemplateHero extends Struct.ComponentSchema {
   };
 }
 
+export interface TemplateMenuItem extends Struct.ComponentSchema {
+  collectionName: 'components_template_menu_items';
+  info: {
+    displayName: 'MenuItem';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface TemplateProject extends Struct.ComponentSchema {
   collectionName: 'components_template_projects';
   info: {
@@ -53,8 +79,10 @@ declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
       'template.brand': TemplateBrand;
+      'template.business-info': TemplateBusinessInfo;
       'template.feature': TemplateFeature;
       'template.hero': TemplateHero;
+      'template.menu-item': TemplateMenuItem;
       'template.project': TemplateProject;
     }
   }

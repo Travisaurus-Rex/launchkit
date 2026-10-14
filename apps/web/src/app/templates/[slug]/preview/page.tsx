@@ -43,6 +43,9 @@ async function TemplatePreview({ params }: PreviewPageProps) {
       hero={template.hero}
       features={template.features ?? []}
       projects={template.projects ?? []}
+      menuItems={template.menuItems ?? []}
+      businessInfo={template.businessInfo ?? null}
+      galleryImages={template.galleryImages ?? []}
     />
   );
 }

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_template_business_infos",
+  "info": {
+    "displayName": "BusinessInfo"
+  },
+  "options": {},
+  "attributes": {
+    "address": {
+      "type": "text"
+    },
+    "openingHours": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    }
+  },
+  "config": {}
+}

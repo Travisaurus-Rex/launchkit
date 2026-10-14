@@ -37,6 +37,22 @@ export type Feature = {
   description: string;
 };
 
+export type MenuItem = {
+  id: number;
+  name: string;
+  description: string;
+  price: number | string;
+  image: StrapiImage | null;
+};
+
+export type BusinessInfo = {
+  id: number;
+  address: string | null;
+  openingHours: string | null;
+  phone: string | null;
+  email: string | null;
+};
+
 export type StrapiImage = {
   id: number;
   url: string;
@@ -60,6 +76,9 @@ export type Template = {
   thumbnail: StrapiImage | null;
   fullPageScreenshot: StrapiImage | null;
   projects: Project[];
+  menuItems: MenuItem[];
+  businessInfo: BusinessInfo | null;
+  galleryImages: StrapiImage[];
 };
 
 type TemplatesResponse = {
@@ -103,6 +122,9 @@ export async function getTemplateBySlug(
   params.set("populate[thumbnail]", "true");
   params.set("populate[fullPageScreenshot]", "true");
   params.set("populate[projects][populate][0]", "image");
+  params.set("populate[menuItems][populate][0]", "image");
+  params.set("populate[businessInfo]", "true");
+  params.set("populate[galleryImages]", "true");
 
   const response = await fetch(
     `${getStrapiUrl()}/api/templates?${params.toString()}`,
