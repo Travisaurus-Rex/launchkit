@@ -22,6 +22,10 @@ export default function Customizer({ template }: CustomizerProps) {
   const [ctaLabel, setCtaLabel] = useState(template.hero.ctaLabel);
   const [primaryColor, setPrimaryColor] = useState(template.brand.primaryColor);
 
+  const [previewMode, setPreviewMode] = useState<
+    "desktop" | "tablet" | "mobile"
+  >("desktop");
+
   if (!TemplateComponent) {
     return (
       <main className="p-8">
@@ -47,6 +51,12 @@ export default function Customizer({ template }: CustomizerProps) {
     menuItems: template.menuItems ?? [],
     businessInfo: template.businessInfo ?? null,
     galleryImages: template.galleryImages ?? [],
+  };
+
+  const previewWidths = {
+    desktop: "100%",
+    tablet: "768px",
+    mobile: "390px",
   };
 
   function resetChanges() {
@@ -148,12 +158,55 @@ export default function Customizer({ template }: CustomizerProps) {
         </aside>
 
         <main className="min-h-0 min-w-0 overflow-y-auto p-4 sm:p-6 lg:p-8">
-          <div className="mb-4 flex items-center justify-between">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-sm font-medium text-stone-700">Live preview</h2>
-            <span className="text-xs text-stone-500">{template.design}</span>
+
+            <div className="flex items-center gap-1 rounded-lg border border-stone-200 bg-white p-1">
+              <button
+                type="button"
+                onClick={() => setPreviewMode("desktop")}
+                className={`rounded-md px-3 py-2 text-sm ${
+                  previewMode === "desktop"
+                    ? "bg-stone-900 text-white"
+                    : "text-stone-600 hover:bg-stone-100"
+                }`}
+              >
+                Desktop
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPreviewMode("tablet")}
+                className={`rounded-md px-3 py-2 text-sm ${
+                  previewMode === "tablet"
+                    ? "bg-stone-900 text-white"
+                    : "text-stone-600 hover:bg-stone-100"
+                }`}
+              >
+                Tablet
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPreviewMode("mobile")}
+                className={`rounded-md px-3 py-2 text-sm ${
+                  previewMode === "mobile"
+                    ? "bg-stone-900 text-white"
+                    : "text-stone-600 hover:bg-stone-100"
+                }`}
+              >
+                Mobile
+              </button>
+            </div>
           </div>
 
-          <div className="min-h-[600px] overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm">
+          <div
+            className="@container mx-auto min-h-[600px] overflow-hidden bg-white shadow-sm transition-[width] duration-300"
+            style={{
+              width: previewWidths[previewMode],
+              maxWidth: "100%",
+            }}
+          >
             <TemplateComponent {...previewProps} />
           </div>
         </main>
