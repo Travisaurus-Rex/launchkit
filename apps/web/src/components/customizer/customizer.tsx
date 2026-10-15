@@ -16,11 +16,31 @@ type CustomizerProps = {
 export default function Customizer({ template }: CustomizerProps) {
   const TemplateComponent = getTemplateComponent(template.design);
 
-  const [brandName, setBrandName] = useState(template.brand.brandName);
-  const [headline, setHeadline] = useState(template.hero.headline);
-  const [subheadline, setSubheadline] = useState(template.hero.subheadline);
-  const [ctaLabel, setCtaLabel] = useState(template.hero.ctaLabel);
-  const [primaryColor, setPrimaryColor] = useState(template.brand.primaryColor);
+  const brand = template.brand ?? {
+    id: 0,
+    brandName: "",
+    primaryColor: "#000000",
+  };
+
+  const hero = template.hero ?? {
+    id: 0,
+    headline: "",
+    subheadline: "",
+    ctaLabel: "",
+    ctaUrl: null,
+  };
+
+  const initialBrandName = brand?.brandName ?? "";
+  const initialHeadline = hero?.headline ?? "";
+  const initialSubheadline = hero?.subheadline ?? "";
+  const initialCtaLabel = hero?.ctaLabel ?? "";
+  const initialPrimaryColor = brand?.primaryColor ?? "#000000";
+
+  const [brandName, setBrandName] = useState(initialBrandName);
+  const [headline, setHeadline] = useState(initialHeadline);
+  const [subheadline, setSubheadline] = useState(initialSubheadline);
+  const [ctaLabel, setCtaLabel] = useState(initialCtaLabel);
+  const [primaryColor, setPrimaryColor] = useState(initialPrimaryColor);
 
   const [previewMode, setPreviewMode] = useState<
     "desktop" | "tablet" | "mobile"
@@ -36,12 +56,12 @@ export default function Customizer({ template }: CustomizerProps) {
 
   const previewProps: TemplateLayoutProps = {
     brand: {
-      ...template.brand,
+      ...brand,
       brandName,
       primaryColor,
     },
     hero: {
-      ...template.hero,
+      ...hero,
       headline,
       subheadline,
       ctaLabel,
@@ -60,11 +80,11 @@ export default function Customizer({ template }: CustomizerProps) {
   };
 
   function resetChanges() {
-    setBrandName(template.brand.brandName);
-    setHeadline(template.hero.headline);
-    setSubheadline(template.hero.subheadline);
-    setCtaLabel(template.hero.ctaLabel);
-    setPrimaryColor(template.brand.primaryColor);
+    setBrandName(brand.brandName);
+    setHeadline(hero.headline);
+    setSubheadline(hero.subheadline);
+    setCtaLabel(hero.ctaLabel);
+    setPrimaryColor(brand.primaryColor);
   }
 
   return (
