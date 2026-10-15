@@ -145,10 +145,10 @@ export function getStrapiMediaUrl(url: string): string {
     return url;
   }
 
-  const baseUrl = process.env.STRAPI_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || process.env.STRAPI_URL;
 
   if (!baseUrl) {
-    throw new Error("STRAPI_URL is not configured");
+    throw new Error("Strapi URL is not configured");
   }
 
   return new URL(url, baseUrl).toString();
