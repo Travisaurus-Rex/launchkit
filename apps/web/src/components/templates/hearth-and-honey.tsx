@@ -8,6 +8,7 @@ import {
   type BusinessInfo,
   type StrapiImage,
 } from "@/lib/strapi";
+import { APP_NAME } from "@/lib/config";
 
 type HearthAndHoneyProps = {
   brand: Brand;
@@ -318,7 +319,7 @@ export default function HearthAndHoneyTemplate({
             </div>
 
             <p className="text-sm text-white/50">
-              A fictional café concept by LaunchKit.
+              A fictional café concept by {APP_NAME}.
             </p>
           </div>
         </footer>

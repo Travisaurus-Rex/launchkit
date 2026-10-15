@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 
 import { getTemplates } from "@/lib/strapi";
 import TemplateGallery from "@/components/template-gallery";
+import { APP_NAME } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Website Templates | LaunchKit",
+  title: `Website Templates | ${APP_NAME}`,
   description:
     "Browse and preview professionally designed website templates for startups, agencies, and small businesses.",
 };

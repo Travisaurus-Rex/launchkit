@@ -1,8 +1,9 @@
+import { APP_ABBR, APP_NAME } from "@/lib/config";
 import Link from "next/link";
 
 const navigation = [
   { label: "Templates", href: "/templates" },
-  { label: "Guides", href: "/guides" },
+  //{ label: "Guides", href: "/guides" },
   { label: "About", href: "/about" },
 ];
 
@@ -15,9 +16,9 @@ export default function SiteHeader() {
           className="flex items-center gap-3 text-xl font-bold tracking-tight text-stone-950"
         >
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-600 text-lg font-bold text-white">
-            L
+            {APP_ABBR}
           </span>
-          LaunchKit
+          {APP_NAME}
         </Link>
 
         <nav

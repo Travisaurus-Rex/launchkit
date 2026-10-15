@@ -1,3 +1,4 @@
+import { APP_NAME } from "@/lib/config";
 import Link from "next/link";
 
 export default async function SiteFooter() {
@@ -10,7 +11,7 @@ export default async function SiteFooter() {
               href="/"
               className="text-xl font-bold tracking-tight text-stone-950"
             >
-              LaunchKit
+              {APP_NAME}
             </Link>
 
             <p className="mt-4 text-sm leading-7 text-stone-500">
@@ -47,7 +48,7 @@ export default async function SiteFooter() {
         </div>
 
         <div className="mt-16 flex flex-col justify-between gap-3 border-t border-stone-200 pt-6 text-sm text-stone-400 md:flex-row">
-          <p>© 2026 LaunchKit</p>
+          <p>© 2026 {APP_NAME}</p>
           <p>Designed to inspire. Built to explore.</p>
         </div>
       </div>

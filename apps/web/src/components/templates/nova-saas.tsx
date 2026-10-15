@@ -1,3 +1,4 @@
+import { APP_NAME } from "@/lib/config";
 import type { Brand, Hero, Feature } from "@/lib/strapi";
 
 type NovaSaaSTemplateProps = {
@@ -271,7 +272,7 @@ export default function NovaSaaSTemplate({
             <span className="font-bold">{brand.brandName}</span>
 
             <p className="text-sm text-slate-400">
-              A LaunchKit website template.
+              A {APP_NAME} website template.
             </p>
           </div>
         </footer>

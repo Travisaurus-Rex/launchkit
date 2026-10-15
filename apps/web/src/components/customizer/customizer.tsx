@@ -8,6 +8,7 @@ import {
 } from "@/components/templates/registry";
 
 import type { Template } from "@/lib/strapi";
+import { APP_NAME } from "@/lib/config";
 
 type CustomizerProps = {
   template: Template;
@@ -91,7 +92,7 @@ export default function Customizer({ template }: CustomizerProps) {
     <div className="flex h-screen flex-col overflow-hidden bg-stone-100 text-stone-950">
       <header className="flex shrink-0 items-center justify-between border-b border-stone-200 bg-white px-6 py-4">
         <a href="/" className="font-semibold tracking-tight">
-          LaunchKit
+          {APP_NAME}
         </a>
 
         <span className="text-sm text-stone-500">

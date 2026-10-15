@@ -1,3 +1,4 @@
+import { APP_NAME } from "@/lib/config";
 import type { Brand, Hero, Feature, Project } from "@/lib/strapi";
 import { getStrapiMediaUrl } from "@/lib/strapi";
 import Image from "next/image";
@@ -266,7 +267,7 @@ export default function AtelierTemplate({
 
             <div className="text-sm text-white/50">
               <p>An independent creative studio.</p>
-              <p className="mt-2">A LaunchKit website template.</p>
+              <p className="mt-2">A {APP_NAME} website template.</p>
             </div>
           </div>
         </footer>
