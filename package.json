@@ -1,9 +1,4 @@
 {
-  "pnpm": {
-    "overrides": {
-      "undici": "7.29.0"
-    }
-  },
   "name": "launchkit",
   "version": "1.0.0",
   "private": true,
