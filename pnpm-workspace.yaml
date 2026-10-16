@@ -1,5 +1,7 @@
 packages:
   - "apps/*"
   - "packages/*"
-overrides:
-  undici: 7.29.0pnpm install --no-frozen-lockfile
+
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver
