@@ -9,6 +9,7 @@ import {
 
 import type { Template } from "@/lib/strapi";
 import { APP_NAME } from "@/lib/config";
+import type { ExportConfig } from "@/lib/export-config";
 
 type CustomizerProps = {
   template: Template;
@@ -74,6 +75,15 @@ export default function Customizer({ template }: CustomizerProps) {
     galleryImages: template.galleryImages ?? [],
   };
 
+  const exportConfig: ExportConfig = {
+    templateSlug: template.slug,
+    brandName,
+    headline,
+    subheadline,
+    ctaLabel,
+    primaryColor,
+  };
+
   const previewWidths = {
     desktop: "100%",
     tablet: "768px",
@@ -88,24 +98,92 @@ export default function Customizer({ template }: CustomizerProps) {
     setPrimaryColor(brand.primaryColor);
   }
 
+  function openExportPreview() {
+    const params = new URLSearchParams({
+      brandName,
+      headline,
+      subheadline,
+      ctaLabel,
+      primaryColor,
+    });
+
+    window.open(
+      `/export-preview/${encodeURIComponent(template.slug)}?${params.toString()}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
+
+  async function downloadWebsite() {
+    const response = await fetch("/api/export", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        templateSlug: template.slug,
+        brandName,
+        headline,
+        subheadline,
+        ctaLabel,
+        primaryColor,
+      }),
+    });
+
+    if (!response.ok) {
+      alert("Website export failed.");
+      return;
+    }
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${template.slug}.zip`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-stone-100 text-stone-950">
-      <header className="flex shrink-0 items-center justify-between border-b border-stone-200 bg-white px-6 py-4">
+      <header className="flex shrink-0 flex-wrap items-center justify-between gap-4 border-b border-stone-200 bg-white px-6 py-4">
         <a href="/" className="font-semibold tracking-tight">
           {APP_NAME}
         </a>
 
-        <span className="text-sm text-stone-500">
-          Customizing: {template.title}
-        </span>
+        <div className="flex flex-wrap items-center justify-end gap-3">
+          <span className="mr-3 hidden text-sm text-stone-500 md:inline">
+            Customizing: {template.title}
+          </span>
 
-        <button
-          type="button"
-          onClick={resetChanges}
-          className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium hover:bg-stone-50"
-        >
-          Reset changes
-        </button>
+          <button
+            type="button"
+            onClick={resetChanges}
+            className="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium transition hover:bg-stone-50"
+          >
+            Reset changes
+          </button>
+
+          <button
+            type="button"
+            onClick={openExportPreview}
+            className="rounded-full bg-stone-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-stone-800"
+          >
+            Preview export
+          </button>
+
+          <button
+            type="button"
+            onClick={downloadWebsite}
+            className="rounded-full bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-700"
+          >
+            Download website
+          </button>
+        </div>
       </header>
 
       <div className="grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] overflow-hidden lg:grid-cols-[320px_minmax(0,1fr)] lg:grid-rows-1">

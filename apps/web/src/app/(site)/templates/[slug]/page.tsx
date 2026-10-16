@@ -79,15 +79,21 @@ async function TemplateDetails({ params }: TemplateDetailPageProps) {
               {template.description}
             </p>
 
-            <Link
-              href={previewUrl}
-              className="mt-10 inline-flex items-center justify-center rounded-xl bg-stone-950 px-8 py-4 font-semibold text-white transition-colors hover:bg-violet-600"
-            >
-              Open live preview
-              <span className="ml-3" aria-hidden="true">
-                →
-              </span>
-            </Link>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                href={`/templates/${template.slug}/preview`}
+                className="inline-flex items-center justify-center rounded-xl bg-stone-950 px-7 py-4 font-semibold text-white transition hover:bg-stone-800"
+              >
+                Open live preview →
+              </Link>
+
+              <Link
+                href={`/customize/${template.slug}`}
+                className="inline-flex items-center justify-center rounded-xl bg-violet-600 px-7 py-4 font-semibold text-white transition hover:bg-violet-700"
+              >
+                Customize template →
+              </Link>
+            </div>
 
             <div className="mt-12 w-full border-t border-stone-200 pt-8">
               <h2 className="text-lg font-semibold text-stone-950">
