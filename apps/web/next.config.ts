@@ -26,6 +26,14 @@ const nextConfig: NextConfig = {
         port: "1337",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "launchkit-cms.onrender.com",
+      },
     ],
     dangerouslyAllowLocalIP: process.env.NODE_ENV === "development",
   },
